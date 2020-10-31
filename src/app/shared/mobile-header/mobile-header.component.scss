@@ -1,0 +1,121 @@
+.header-top {
+    top: 0px;
+    background-color: #157ED2;
+    color: white;
+    width: 100%;
+    z-index: 999;
+    .tabs {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        justify-items: center;
+        align-items: center;
+        a {
+            text-align: center;
+            color: white;
+            font-size: 10px;
+            margin: 5px;
+        }
+        .social {
+            position: relative;
+            .cartTotal {
+                position: absolute;
+                top: -5px;
+                height: 15px;
+                width: 15px;
+                background: #157ED2;
+                border-radius: 50%;
+                line-height: 15px;
+                color: white;
+                font-size: 10px;
+                left: 10px;
+            }
+        }
+        .normalFont {
+            font-size: 10px;
+            font-weight: normal;
+        }
+        .cleanBtn {
+            box-shadow: none;
+            line-height: 0px;
+            color: white;
+            width: max-content;
+            min-width: max-content;
+        }
+        .cleanBtn2 {
+            box-shadow: none;
+            line-height: 0px;
+            color: white;
+            width: max-content;
+            min-width: max-content;
+        }
+        .activeCity {
+            background: #157ED2;
+            color: white;
+            padding: 10px;
+        }
+        .normalCity {
+            background: white;
+            color: #157ED2;
+            padding: 10px;
+        }
+    }
+}
+
+.tabs_head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-items: center;
+    align-items: center;
+    padding-top: 15px;
+    a {
+        text-align: center;
+        color: white;
+        font-size: 10px;
+        margin: 5px;
+    }
+    .social {
+        position: relative;
+        .cartTotal {
+            position: absolute;
+            top: -5px;
+            height: 15px;
+            width: 15px;
+            background: #157ED2;
+            border-radius: 50%;
+            line-height: 15px;
+            color: white;
+            font-size: 10px;
+            left: 10px;
+        }
+    }
+    .normalFont {
+        font-size: 10px;
+        font-weight: normal;
+    }
+    .cleanBtn {
+        box-shadow: none;
+        line-height: 0px;
+        color: white;
+        width: max-content;
+        min-width: max-content;
+    }
+    .cleanBtn2 {
+        box-shadow: none;
+        line-height: 0px;
+        color: white;
+        width: max-content;
+        min-width: max-content;
+    }
+    .activeCity {
+        background: #157ED2;
+        color: white;
+        padding: 10px;
+    }
+    .normalCity {
+        background: white;
+        color: #157ED2;
+        padding: 10px;
+    }
+}

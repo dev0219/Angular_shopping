@@ -1,0 +1,224 @@
+<div mdbModal #cityModal="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" [config]="{ignoreBackdropClick: true}" style="z-index: 9999;">
+    <div class="modal-dialog modal-notify modal-success" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <p class="heading lead" style="text-align: center;">{{util.getString('Select city')}} </p>
+            </div>
+            <div class="modal-body">
+                <div *ngFor="let item of cities" (click)="selectedCity(item)">
+                    <p> {{item.name}} </p>
+                </div>
+            </div>
+
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+
+<header class="page-header font-small  " style="margin-bottom: 50px;">
+
+    <div class="toolbar">
+        <!-- header content -->
+        <div class="row" style="background-color: black;width: 116%;height: 40px;margin-top: -12px;">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3">
+                <p class="header_black_title">FREE SHIPPING FOR ALL ORDER OVER $200 CLICK HERE FOR MORE INFOR</p>
+            </div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-3"></div>
+            <div class="col-lg-3 auth_title">
+                <p *ngIf="getAccount() === false" (click)="login()">LOGIN / REGISTER</p>
+                <div *ngIf="getAccount() === true">
+                    <ng-template #popContent2 let-greeting="greeting">
+                        <br>
+                        <!-- <a mdbWavesEffect class="linkBtn" *ngIf="getAccount() === false" (click)="login()">
+                          {{util.getString('Login or Sign up')}} </a> -->
+                        <a mdbWavesEffect class="linkBtn" *ngIf="getAccount() === true" (click)="myaccount()">
+                          {{util.getString('My Account')}} </a>
+                        <hr>
+                        <div class="flex_box" (click)="goChat()" *ngIf="getAccount() === true">
+                            <mdb-icon fas icon="comments"></mdb-icon> <a class="dark-grey-text">{{util.getString('Chats')}} </a>
+                        </div>
+                        <hr *ngIf="getAccount() === true">
+                        <div class="flex_box" (click)="faq()">
+                            <mdb-icon fas icon="question-circle"></mdb-icon> <a class="dark-grey-text">{{util.getString('FAQs')}} </a>
+                        </div>
+                        <hr *ngIf="getAccount() === true">
+                        <div class="flex_box" *ngIf="getAccount() === true" (click)="myOrders()">
+                            <mdb-icon fas icon="shopping-cart"></mdb-icon> <a class="dark-grey-text">{{util.getString('Orders')}} </a>
+                        </div>
+                        <hr>
+                        <div class="flex_box" (click)="help()">
+                            <mdb-icon fas icon="info-circle"></mdb-icon> <a class="dark-grey-text">{{util.getString('Help')}} </a>
+                        </div>
+                        <hr *ngIf="getAccount() === true">
+                        <div class="flex_box" *ngIf="getAccount() === true" (click)="logout()">
+                            <mdb-icon fas icon="power-off"></mdb-icon> <a class="dark-grey-text">{{util.getString('Logout')}} </a>
+                        </div>
+                    </ng-template>
+                    <button type="button" class="btn btn-clear mr-2 cleanBtn" [ngbPopover]="popContent2" triggers="manual" #p2="ngbPopover" (click)="p2.open()">
+                        {{util.getString('My Account')}}
+                        <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                      </button>
+                </div>
+                <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:black!important;height: 20px;">
+                    <div class="collapse navbar-collapse" id="main_nav">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link  dropdown-toggle_coin" href="#" data-toggle="dropdown"> USD </a>
+                                <ul class="dropdown-menu dropdown-menu-right fade-down text-center" style="margin-right: -50px;">
+                                    <li><a class="dropdown-item" href="#"> USD </a></li>
+                                    <li><a class="dropdown-item" href="#"> GBP </a></li>
+                                    <li><a class="dropdown-item" href="#"> EUR </a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                    <!-- container //  -->
+                </nav>
+            </div>
+        </div>
+        <div class="row" style="margin: 10px;">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="flex_box" (click)="home()" style="color: white !important;">
+                        <a class="dark-grey-text" style="color: white !important;">Home&nbsp;<i class="fa fa-angle-down"></i></a>
+                    </div>
+                    <div style="width: 5px;"></div>
+                    <div class="flex_box" (click)="about()" style="color: white !important;">
+                        <a class="dark-grey-text" style="color: white !important;">About Us&nbsp;<i class="fa fa-angle-down"></i></a>
+                    </div>
+                    <div style="width: 5px;"></div>
+                    <div class="flex_box" (click)="goToPrivacy()" style="color: white !important;">
+                        <a class="dark-grey-text" style="color: white !important;">Privacy &nbsp;<i class="fa fa-angle-down"></i></a>
+                    </div>
+                    <div style="width: 5px;"></div>
+                    <div class="flex_box" style="color: white !important;">
+                        <a class="dark-grey-text" style="color: white !important;">Term &nbsp;<i class="fa fa-angle-down"></i></a>
+                    </div>
+                    <div style="width: 5px;"></div>
+                    <div class="flex_box" (click)="goToRefund()" style="color: white !important;">
+                        <a class="dark-grey-text" style="color: white !important;">Policy &nbsp;<i class="fa fa-angle-down"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-2">
+                <h3 class="header_title" (click)="home()">Asklol</h3>
+            </div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-3">
+                <div class="shopping_address">
+                    <p><img src="assets/imgs/email.png"> info@alipasal.com &nbsp;</p>
+                    <p><img src="assets/imgs/phone.png">7543800768</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- header content -->
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- <div class="col-lg-1 "> -->
+                <!-- <ng-template #popContent let-greeting="greeting">
+                                <div *ngFor="let item of dummy">
+                                    <ngx-skeleton-loader animation="progress" [theme]="{ 'border-radius': '5px', height: '20px',width:'100px', border: '1px solid white' }">
+                                    </ngx-skeleton-loader>
+                                </div>
+                                <div *ngFor="let item of cities" [ngClass]="id === item.id ? 'activeCity':'normalCity'" (click)="selected(item)">
+                                    <mdb-icon fas icon="check-circle" *ngIf="id === item.id"></mdb-icon> {{item.name}}
+                                </div>
+                            </ng-template>
+                            <button type="button" class="btn btn-clear mr-2 cleanBtn" [ngbPopover]="popContent" triggers="manual" #p1="ngbPopover" (click)="p1.open()">
+                            <span class="fa fa-map-pin" aria-hidden="true" *ngIf="cityName"></span>
+                            {{cityName}}
+                            <span class="fa fa-chevron-down" aria-hidden="true" *ngIf="cityName"></span>
+                            </button> -->
+                <!-- </div> -->
+                <div class="col-lg-2">
+                    <div class="form-control group-navbtn" style="border:none" *ngIf="categories?.length ">
+
+                        <nav class="navbar navbar-expand-lg navbar-dark category_orders">
+                            <div class="collapse navbar-collapse" id="main_nav">
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item dropdown">
+                                        <i class="fa fa-th categroy_grid"></i>
+                                        <div class="nav-link  dropdown-toggle castegory_title_name" (mouseenter)="category_scroll()" data-toggle="dropdown"> CATEGORIES </div>
+                                        <ul id="category_hidden" class="dropdown-menu dropdown-menu-right fade-down cagegory_lists" style="display: block;">
+                                            <li class="category_link" *ngFor="let item of categories" (click)="subCate(item)"><img [src]="api.mediaURL + item.cover" class="categoryList_icon">&nbsp;&nbsp;&nbsp;
+                                                <p style="margin-top: 4px;">{{item.name}}</p>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+                            <!-- container //  -->
+                        </nav>
+
+                    </div>
+                </div>
+                <!-- search -->
+                <div class="col-lg-8 search_category">
+                    <select class="form-control categories_sel">
+                            <option value="" disabled selected>All Categories</option>
+                            <option>Categories1</option>
+                            <option>Categories2</option>
+                            <option>Categories3</option>
+                            <option>Categories4</option>
+                            </select>
+                    <div style="width: 20px;"></div>
+                    <input class="form-control" type="text" (keydown.enter)="search($event.target.value)" [(ngModel)]="terms" [ngModelOptions]="{standalone: true}" [placeholder]="util.getString('Search for products')" aria-label="Search" class="searchText" (input)="inputChange()">
+                    <mdb-icon (click)="search(terms)" fas icon="search" style="color:blue;padding: 16px;cursor: pointer;font-size: 19px;"></mdb-icon>
+                </div>
+                <div class="col-lg-2 flexer">
+                    <div class="shopping_heart">
+                        <i class="far fa-heart" style="font-size: 25px;margin-top: 10px;"></i>
+                        <span class="cart_text_heart">0</span>
+                    </div>
+                    <div style="width:10px;"></div>
+                    <div class="shop_cart_bill">
+                        <a class="cartBtns" (click)="util.publishCartBtn()" style="color:white;background-color: #003366;position: absolute;left: -2px;top:-2px;padding:7px;border-radius:5px 0 0 5px;">
+                            <span class="carts" *ngIf="cart.cart?.length"> {{cart.cart.length}} </span>
+                            <img src="assets\imgs\shopping-cart.png" aria-hidden="true">
+                            <span class="cart_text">0</span>
+                            <!-- <span class="fa fa-icon-cart" aria-hidden="true"></span> -->
+                        </a>
+                        <div class="shopping_cart_bucket">
+                            <p>SHOPPING CART</p>
+                            <h4 style="margin-top:-15px;font-size:15px;">$0.00</h4>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+<!-- <div class="stack-top" *ngIf="products?.length && terms !==''">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-6">
+                <div class="searchItem">
+                    <p *ngFor="let item of products" (click)="openProduct(item)">
+                        <img class="imgs" [src]="api.mediaURL+item.cover" alt="" onError="this.src='assets/imgs/user.png'"> {{item.name}}
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-1"></div>
+        </div>
+
+    </div>
+</div> -->

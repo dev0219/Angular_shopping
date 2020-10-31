@@ -1,0 +1,136 @@
+<div class="header-top">
+    <div class="tabs_head">
+        <div style="width: 6%;"></div>
+        <div style="width: 22%;text-align: center;font-size: 12px;">
+            <p *ngIf="getAccount() === false" (click)="login()">Login</p>
+            <div *ngIf="getAccount() === true">
+                <ng-template #popContent2 let-greeting="greeting">
+                    <br>
+                    <!-- <a mdbWavesEffect class="linkBtn" *ngIf="getAccount() === false" (click)="login()">
+                  {{util.getString('Login or Sign up')}} </a> -->
+                    <a mdbWavesEffect class="linkBtn" *ngIf="getAccount() === true" (click)="myaccount()">
+                  {{util.getString('My Account')}} </a>
+                    <hr>
+                    <div class="flex_box" (click)="goChat()" *ngIf="getAccount() === true">
+                        <mdb-icon fas icon="comments"></mdb-icon> <a class="dark-grey-text">{{util.getString('Chats')}} </a>
+                    </div>
+                    <hr *ngIf="getAccount() === true">
+                    <div class="flex_box" (click)="faq()">
+                        <mdb-icon fas icon="question-circle"></mdb-icon> <a class="dark-grey-text">{{util.getString('FAQs')}} </a>
+                    </div>
+                    <hr *ngIf="getAccount() === true">
+                    <div class="flex_box" *ngIf="getAccount() === true" (click)="myOrders()">
+                        <mdb-icon fas icon="shopping-cart"></mdb-icon> <a class="dark-grey-text">{{util.getString('Orders')}} </a>
+                    </div>
+                    <hr>
+                    <div class="flex_box" (click)="help()">
+                        <mdb-icon fas icon="info-circle"></mdb-icon> <a class="dark-grey-text">{{util.getString('Help')}} </a>
+                    </div>
+                    <hr *ngIf="getAccount() === true">
+                    <div class="flex_box" *ngIf="getAccount() === true" (click)="logout()">
+                        <mdb-icon fas icon="power-off"></mdb-icon> <a class="dark-grey-text">{{util.getString('Logout')}} </a>
+                    </div>
+                </ng-template>
+                <button type="button" class="btn btn-clear mr-2 cleanBtn" [ngbPopover]="popContent2" triggers="manual" #p2="ngbPopover" (click)="p2.open()">
+                {{util.getString('My Account')}}
+                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+              </button>
+            </div>
+        </div>
+        <div style="width: 22%;text-align: center;font-size: 12px;">
+            <p *ngIf="getAccount() === false" (click)="login()">Register</p>
+        </div>
+        <div style="width: 22%;text-align: center;font-size: 12px;">
+            <p>My Wishlist</p>
+        </div>
+        <div style="width: 22%;text-align: center;font-size: 12px;">
+            <p>My Compare</p>
+        </div>
+        <div style="width: 6%;"></div>
+    </div>
+    <div class="tabs">
+        <div style="width: 6%;"></div>
+        <div style="width: 10%;text-align: center;">
+            <a [routerLink]="['/categories']" class="social">
+                <mdb-icon fas icon="bars" style="font-size: 20px;"></mdb-icon>
+            </a>
+        </div>
+        <div style="width: 10%;text-align: center;">
+            <a [routerLink]="['/search']" class="social">
+                <mdb-icon fas icon="search" style="font-size: 20px;"></mdb-icon>
+            </a>
+        </div>
+        <div style="width: 48%;text-align: center;">
+            <a [routerLink]="['/']">
+                <h1 style="text-align: center;">Asklol</h1>
+            </a>
+        </div>
+        <div style="width: 10%;text-align: center;">
+            <a [routerLink]="['/checkout']" class="social">
+                <mdb-icon fas icon="shopping-cart" style="font-size: 20px;">
+                </mdb-icon>
+                <span *ngIf="cart.cart?.length" class="cartTotal"> {{cart.cart?.length}} </span>
+            </a>
+        </div>
+        <div style="width: 10%;text-align: center;">
+            <a [routerLink]="['/checkout']" class="social">
+                <mdb-icon fas icon="shopping-cart" style="font-size: 20px;">
+                </mdb-icon>
+                <span *ngIf="cart.cart?.length" class="cartTotal"> {{cart.cart?.length}} </span>
+            </a>
+        </div>
+        <div style="width: 6%;"></div>
+        <!-- Logo -->
+        <!-- <a [routerLink]="['/']" class="social">
+            <img src="assets/logo.ico" height="50px" alt="Alipasal" style="border-radius: 50%;">
+        </a> -->
+
+
+        <ng-template #popContent let-greeting="greeting">
+            <div *ngFor="let item of dummy">
+                <ngx-skeleton-loader animation="progress" [theme]="{ 'border-radius': '5px', height: '20px',width:'100px', border: '1px solid white' }">
+                </ngx-skeleton-loader>
+            </div>
+            <div *ngFor="let item of cities" [ngClass]="id === item.id ? 'activeCity':'normalCity'" (click)="selected(item)">
+                <mdb-icon fas icon="check-circle" *ngIf="id === item.id"></mdb-icon> {{item.name}}
+            </div>
+        </ng-template>
+
+        <ng-template #popContent2 let-greeting="greeting">
+            <div *ngFor="let item of dummyLang">
+                <ngx-skeleton-loader animation="progress" [theme]="{ 'border-radius': '5px', height: '20px',width:'100px', border: '1px solid white' }">
+                </ngx-skeleton-loader>
+            </div>
+            <div *ngFor="let item of langs" [ngClass]="lngId === item.file ? 'activeCity':'normalCity'" (click)="changed(item.file)">
+                <img [src]="api.mediaURL+item.cover" style="height: 15px;width: 15px;margin-right: 5px;" alt=""> {{item.name}}
+            </div>
+        </ng-template>
+        <!-- Logo -->
+
+
+
+        <!-- <div style="display: flex; flex-direction: column; margin: 10px;"> -->
+        <!-- location -->
+        <!-- <a [ngbPopover]="popContent" triggers="manual" #p1="ngbPopover" (click)="p1.open()">
+                <span class="fa fa-map-pin" aria-hidden="true" *ngIf="cityName"></span> {{cityName}}
+                <span class="fa fa-chevron-down" aria-hidden="true" *ngIf="cityName"></span>
+            </a> -->
+        <!-- location -->
+
+
+        <!-- language -->
+        <!-- <a [ngbPopover]="popContent2" triggers="manual" #p2="ngbPopover" (click)="p2.open()">
+                <img [src]="getLangFlag()" alt="" style="height: 15px;width: 15px;margin-right: 5px;"> {{getLangName()}}
+                <span class="fa fa-chevron-down" aria-hidden="true" *ngIf="getLangName()"></span>
+            </a> -->
+        <!-- language -->
+
+
+
+        <!-- <a [routerLink]="['/checkout']" class="social">
+      <mdb-icon fas icon="shopping-cart"></mdb-icon>
+      <span *ngIf="cart.cart?.length" class="cartTotal"> {{cart.cart?.length}} </span>
+    </a> -->
+        <!-- </div> -->
+    </div>
+</div>
